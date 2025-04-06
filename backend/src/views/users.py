@@ -15,7 +15,6 @@ class CreateUsers(Resource):
             if key not in json:
                 raise ApiError(412, f"Campos faltantes o no acorde a las condiciones minimas")
             
-
         if not isinstance(json["username"], str) or len(json["username"]) < 5 or re.search(r'\s', json["username"]) or re.search(r'\W', json["username"]):
             raise ApiError(412, f"Campos faltantes o no acorde a las condiciones minimas")
         
@@ -57,7 +56,7 @@ class CreateUsers(Resource):
         
 
 class Login(Resource):
-    def get(self):
+    def post(self):
         
         json = request.get_json()
         keys = ["username", "password_hash"]

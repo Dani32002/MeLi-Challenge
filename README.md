@@ -380,6 +380,7 @@ N/A
         "precio": Precio del producto,
         "cantidad": Cantidad solicitada del producto,
         "subtotal": Subtotal del producto,
+        "stock": Stock del producto,
         "opcionesEnvio": [
             {
                 "nombre": Nombre del tipo de envio,
@@ -546,7 +547,7 @@ N/A
 <table>
 <tr>
 <td> Método </td>
-<td> GET </td>
+<td> POST </td>
 </tr>
 <tr>
 <td> Ruta </td>

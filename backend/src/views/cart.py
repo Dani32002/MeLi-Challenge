@@ -80,6 +80,7 @@ class GetPostCart(Resource):
                 "precio": product.precio,
                 "cantidad": item.cantidad,
                 "subtotal": product.precio * item.cantidad,
+                "stock": product.stock,
                 "opcionesEnvio": [{
                     "nombre": opcion.nombre,
                     "costo": opcion.costo
@@ -91,7 +92,7 @@ class GetPostCart(Resource):
         
         return_obj = {
             "total": sum([product["subtotal"] for product in products]),
-            "num_prods": len(products),
+            "num_prods": sum([product["cantidad"] for product in products]),
             "productos": products
         }
 

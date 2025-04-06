@@ -9,8 +9,9 @@ dotenv = "*"
 flask-jwt-extended = "*"
 sqlalchemy = "*"
 marshmallow = "*"
-psycopg2 = "*"
 flask-restful = "*"
+flask-cors = "*"
+psycopg2-binary = "*"
 
 [dev-packages]
 

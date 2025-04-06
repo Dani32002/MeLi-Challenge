@@ -630,3 +630,57 @@ N/A
 </tr>
 </tbody>
 </table>
+
+### Health Check
+
+<table>
+<tr>
+<td> Método </td>
+<td> GET </td>
+</tr>
+<tr>
+<td> Ruta </td>
+<td> <strong>/health-check</strong> </td>
+</tr>
+<tr>
+<td> Parámetros </td>
+<td> N/A </td>
+</tr>
+<tr>
+<td> Encabezados </td>
+<td>
+
+N/A
+
+</td>
+</tr>
+<tr>
+<td> Cuerpo </td>
+<td>
+
+N/A
+
+</td>
+</tr>
+</table>
+
+##### Respuestas
+
+<table>
+<tr>
+<th> Código </th>
+<th> Descripción </th>
+<th> Cuerpo </th>
+</tr>
+<tbody>
+<tr>
+<td> 200 </td>
+<td>El servicio esta funcionando</td>
+<td>
+
+OK
+
+</td>
+</tr>
+</tbody>
+</table>

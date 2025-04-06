@@ -50,7 +50,7 @@ export default function Product({ product, allowCart }) {
                     {product.nombre}
                 </Card.Title>
                 <div style={{margin: "5px"}}>
-                    <Row>
+                    <Row style={{margin: "5px"}}>
                         <Col xs={6} style={{textAlign: "left"}}><   strong>Precio:</strong> ${product.precio}</Col>
                         <Col xs={6} style={{textAlign: "right"}}><strong>Stock:</strong> {product.stock}</Col>
                     </Row>                    

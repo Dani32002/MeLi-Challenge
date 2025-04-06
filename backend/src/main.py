@@ -13,7 +13,7 @@ secret_key = os.getenv("JWT_SECRET_KEY")
 
 app = Flask(__name__)
 app.config['JWT_SECRET_KEY'] = secret_key
-app.config['JWT_ACCESS_TOKEN_EXPIRES'] = timedelta(minutes=60)  # Access token expires in 15 minutes
+app.config['JWT_ACCESS_TOKEN_EXPIRES'] = timedelta(minutes=1440)  # Access token expires in 15 minutes
 
 
 Base.metadata.create_all(engine)
@@ -42,9 +42,9 @@ session.commit()
 
 # Create test products
 prods = [ 
-    Producto("Producto 1", 10.0, "https://www.clevercel.co/cdn/shop/files/Portadas_iPhone14Plus.webp?v=1743797244", 5),
-    Producto("Producto 2", 20.0, "https://cosonyb2c.vtexassets.com/arquivos/ids/360392-800-800?v=638645914784400000&width=800&height=800&aspect=true", 10),
-    Producto("Producto 3", 30.0, "https://images-cdn.ubuy.ae/642418354fdb2738c94b5913-new-geforce-rtx-4090-24gb-founders.jpg", 3)
+    Producto("iPhone", 10.0, "https://www.clevercel.co/cdn/shop/files/Portadas_iPhone14Plus.webp?v=1743797244", 5),
+    Producto("PS5", 20.0, "https://cosonyb2c.vtexassets.com/arquivos/ids/360392-800-800?v=638645914784400000&width=800&height=800&aspect=true", 10),
+    Producto("RTX 4090", 30.0, "https://images-cdn.ubuy.ae/642418354fdb2738c94b5913-new-geforce-rtx-4090-24gb-founders.jpg", 3)
 ]
 session.add_all(prods)
 session.commit()

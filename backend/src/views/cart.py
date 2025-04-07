@@ -43,7 +43,7 @@ class GetPostCart(Resource):
 
         if len(item) > 0:
             session.close()
-            raise ApiError(412, f"El producto ya esta en el cart")
+            raise ApiError(412, f"El producto ya esta en el cart:{item[0].id}")
         
         item = ItemCarrito(cantidad=json["cantidad"], producto=json["id_producto"], usuario=current_user)
         session.add(item)

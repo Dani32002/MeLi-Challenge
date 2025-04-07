@@ -101,7 +101,7 @@ http://localhost:5000/
 
 ```json
 {
-  "msg": "El producto ya esta en el cart",
+  "msg": "El producto ya esta en el cart:{id_item}",
 }
 ```
 </td>

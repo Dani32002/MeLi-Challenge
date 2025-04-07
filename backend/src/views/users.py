@@ -9,7 +9,7 @@ from flask_jwt_extended import create_access_token
 class CreateUsers(Resource):
     def post(self):
         json = request.get_json()
-        keys = ["username", "email", "password_hash"]
+        keys = ["username", "email", "password"]
 
         for key in keys:
             if key not in json:
@@ -22,7 +22,7 @@ class CreateUsers(Resource):
         if not isinstance(json["email"], str) or not re.match(email_pattern, json["email"]):
             raise ApiError(412, f"Campos faltantes o no acorde a las condiciones minimas")
         
-        if not isinstance(json["password_hash"], str) or len(json["password_hash"]) < 8:
+        if not isinstance(json["password"], str) or len(json["password"]) < 8:
             raise ApiError(412, f"Campos faltantes o no acorde a las condiciones minimas")
 
         session = Session()
@@ -37,7 +37,7 @@ class CreateUsers(Resource):
             session.close()
             raise ApiError(412, f"Campos faltantes o no acorde a las condiciones minimas")
         
-        user = Usuario(username=json["username"], email=json["email"], password_hash=json["password_hash"])
+        user = Usuario(username=json["username"], email=json["email"], password=json["password"])
         session.add(user)
         session.commit()
         
@@ -46,7 +46,7 @@ class CreateUsers(Resource):
             "id": str(user.id),
             "username": user.username,
             "email": user.email,
-            "password_hash": user.password_hash
+            "password": user.password
         }
 
         session.close()
@@ -59,7 +59,7 @@ class Login(Resource):
     def post(self):
         
         json = request.get_json()
-        keys = ["username", "password_hash"]
+        keys = ["username", "password"]
 
         for key in keys:
             if key not in json:
@@ -74,7 +74,7 @@ class Login(Resource):
             raise ApiError(412, f"Usuario o contraseña incorrecta")
         
         user = users[0]
-        if user.password_hash != json["password_hash"]:
+        if user.password != json["password"]:
             session.close()
             raise ApiError(412, f"Usuario o contraseña incorrecta")
         
@@ -82,7 +82,7 @@ class Login(Resource):
             "id": str(user.id),
             "username": user.username,
             "email": user.email,
-            "password_hash": user.password_hash,
+            "password": user.password,
             "token": create_access_token(identity=user.id)
         }
 

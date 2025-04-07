@@ -16,15 +16,15 @@ export default function Register() {
             headers: {
                 "Content-Type": "application/json"
             },
-            body: JSON.stringify({ username: username, email: email, password_hash: password })
+            body: JSON.stringify({ username: username, email: email, password: password })
         })
         .then(response => response.json())
         .then(data => {
-            if (!data.msg) {
+            if (!data.msg && data !== "Internal Server Error") {
                 alert("Registro exitoso, inicie sesión!");
                 navigate("/login");
             } else {
-                alert("Error en el registro!");
+                alert(data.msg || data);
             }
         })
         

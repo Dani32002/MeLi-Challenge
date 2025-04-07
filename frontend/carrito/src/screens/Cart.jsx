@@ -1,8 +1,8 @@
 import { useContext, useEffect, useState } from "react";
 import { AppStateContext } from "../App";
-import { Col, ListGroup, Row, Button, Form } from "react-bootstrap";
-import { FaTrash } from "react-icons/fa";
+import { Col, ListGroup, Row } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
+import CartProduct from "../components/CartProduct";
 
 export default function Cart() {
 
@@ -26,8 +26,8 @@ export default function Cart() {
             })
             .then((response) => response.json())
             .then((data) => {
-                if (data.msg) {
-                    alert(data.msg);
+                if (data.msg || data === "Internal Server Error") {
+                    alert(data.msg || data);
                     if (data.msg === "El token es invalido o no se encuentra en la petición") {
                         setUser(null);
                         navigate("/");
@@ -57,7 +57,7 @@ export default function Cart() {
                 }));
             } else {
                 response.json().then((data) => {
-                    alert(data.msg);
+                    alert(data.msg || data);
                     if (data.msg === "El token es invalido o no se encuentra en la petición") {
                         setUser(null);
                         navigate("/");
@@ -81,7 +81,7 @@ export default function Cart() {
         }).then((response) => {
             if (response.status !== 200) {
                 response.json().then((data) => {
-                    alert(data.msg);
+                    alert(data.msg || data);
                     if (data.msg === "El token es invalido o no se encuentra en la petición") {
                         setUser(null);
                         navigate("/");
@@ -118,43 +118,7 @@ export default function Cart() {
                 </Row>
             </ListGroup.Item>
             {cart.productos?.map((product, i) => (
-                <ListGroup.Item key={i} style={{width: "100%", height: "20%", display: "flex", justifyContent: "center", alignItems: "center"}}>
-                    <Row style={{width: "100%", height: "170px"}}>
-                        <Col xs={2} style={{display: "flex", justifyContent: "center", alignItems: "center"}}>
-                            <img src={product.imagen_path} alt={product.nombre} style={{width: "55%", height: "55%", objectFit: "contain"}}/>
-                        </ Col>
-                        <Col xs={2} className="d-flex flex-column justify-content-center align-items-center">
-                            <Row style={{width: "100%"}}><p style={{width: "100%"}}><strong>Nombre: </strong>{product.nombre}</p></Row>
-                            <Row style={{width: "100%"}}><p style={{width: "100%"}}><strong>Precio: </strong>${product.precio}</p></Row>
-                        </ Col>
-                        <Col xs={2} className="d-flex flex-column justify-content-center align-items-center">
-                            <Row style={{width: "100%"}}><p style={{width: "100%"}}><strong>Subtotal: </strong>${product.subtotal}</p></Row>
-                        </ Col>
-                        <Col xs={2} className="d-flex flex-column justify-content-center align-items-center">
-                            <ul>
-                                { 
-                                    product.opcionesEnvio?.map((option, i) => (
-                                        <li key={i}>{option.nombre}{' $'}{option.costo}</li>
-                                    ))
-                                }
-                            </ul>
-                        </ Col>
-                        <Col xs={2} className="d-flex flex-column justify-content-center align-items-center">
-                            <Form.Select onChange={(e) => handleUpdate(e, product.id_item)} style={{width: "50%", margin: "0 auto"}} value={product.cantidad}>
-                                { 
-                                    [...Array(product.stock).keys()].map((i) => (
-                                        <option key={i} value={i + 1}>{i + 1}</option>
-                                    ))
-                                }
-                            </Form.Select>
-                        </ Col>
-                        <Col xs={1} className="d-flex flex-column justify-content-center align-items-center">
-                            <Button variant="danger" onClick={() => handleDelete(product.id_item)}>
-                                <FaTrash style={{color: "black"}}/>
-                            </Button>
-                        </ Col>
-                    </Row>
-                </ListGroup.Item>
+                <CartProduct key={i} i={i} product={product} handleUpdate={handleUpdate} handleDelete={handleDelete}/>
             ))}
         </ListGroup>
     );

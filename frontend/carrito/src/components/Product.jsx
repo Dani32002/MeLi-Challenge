@@ -30,10 +30,10 @@ export default function Product({ product, allowCart }) {
         })
         .then(response => response.json())
         .then((data) => {
-            if (!data.msg) {
+            if (!data.msg && data !== "Internal Server Error") {
                 alert("Producto agregado al carrito!");
             } else {
-                alert(data.msg);
+                alert(data.msg || data);
                 if (data.msg === "El token es invalido o no se encuentra en la petición") {
                     setUser(null);
                     navigate("/");
@@ -43,15 +43,15 @@ export default function Product({ product, allowCart }) {
     }
 
     return (
-        <Card style={{ width: '18rem', height: '20rem' }}>
+        <Card style={{ width: '18rem', height: '22rem' }}>
             <Card.Img variant="top" src={product.imagen_path} alt={product.nombre} style={{width: "100%", height: "50%", objectFit: "contain", padding: "5%"}}/>
             <Card.Body>
                 <Card.Title style={{ width: '100%', textAlign: 'center' }}>
                     {product.nombre}
                 </Card.Title>
-                <div style={{margin: "5px"}}>
+                <div style={{margin: "15px"}}>
                     <Row style={{margin: "5px"}}>
-                        <Col xs={6} style={{textAlign: "left"}}><   strong>Precio:</strong> ${product.precio}</Col>
+                        <Col xs={6} style={{textAlign: "left"}}><strong>Precio:</strong> ${product.precio}</Col>
                         <Col xs={6} style={{textAlign: "right"}}><strong>Stock:</strong> {product.stock}</Col>
                     </Row>                    
                 </div>

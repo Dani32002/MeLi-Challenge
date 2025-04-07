@@ -1,5 +1,25 @@
 # MeLi-Challenge
 
+Este es un pequeño proyecto hecho para el proceso de vinculación de practicas con Mercado Libre. Este consiste en una pequeña aplicación de carrito de compras con un backend hecho en Python con Flask y un frontend en JS con ReactJS.
+
+## Ejecución
+
+Ubicado en el directorio raiz ejecute:
+
+```bash
+docker compose up --build
+```
+
+Este comando ejecuta los 3 contenedores correspondientes a la aplicación. El componente de base de datos en postgres, el contenedor con el frontend y el contenedor con el servidor de flask son los que componen la solución al reto.
+
+Esta aplicación se ejecuta de forma que se pueda usarse localmente en la maquina donde se ejecuta el proyecto. Para conectarse al frontend simplemente dirijase a:
+
+http://localhost/
+
+Aun asi, se puede comunicar con el backend de la aplicación mediante la URL:
+
+http://localhost:5000/
+
 ## Endpoints
 
 ### Cart
@@ -496,7 +516,7 @@ N/A
 {
   "username": Nombre de usuario alfanumerico y de minimo 5 caracteres unico,
   "email": Email del usuario unico,
-  "password_hash": Hash de la contraseña,
+  "password": Contraseña,
 }
 ```
 </td>
@@ -534,7 +554,7 @@ N/A
   "id": Identificador del usuario,
   "username": Nombre de usuario,
   "email": Email del usuario,
-  "password_hash": Hash de la contraseña,
+  "password": Contraseña,
 }
 ```
 </td>
@@ -572,7 +592,7 @@ N/A
 ```json
 {
   "username": Nombre de usuario alfanumerico y de minimo 5 caracteres unico,
-  "password_hash": Hash de la contraseña,
+  "password": Contraseña,
 }
 ```
 </td>
@@ -622,7 +642,7 @@ N/A
   "id": Identificador del usuario,
   "username": Nombre de usuario,
   "email": Email del usuario,
-  "password_hash": Hash de la contraseña,
+  "password": Contraseña,
   "token": Token de autorización
 }
 ```

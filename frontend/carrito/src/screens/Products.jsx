@@ -20,6 +20,11 @@ export default function Products() {
 
     return (
         <div style={{ padding: "30px" }}>
+            { user === null ?
+                <div style={{width: "100%", display: "flex", justifyContent: "center", padding: "30px"}}>
+                    <h3 style={{textAlign: "center"}}>Inicie sesión para agregar productos al carrito</h3>
+                </div> : null
+            }
             <Row style={{width: "100%", justifyContent: "center"}}>
                 {products.map((product, i) => (
                     <Col key={i} className="d-flex justify-content-center align-items-center" xs={4} style={{width: "25%"}}>

@@ -17,16 +17,16 @@ export default function Login() {
             headers: {
                 "Content-Type": "application/json"
             },
-            body: JSON.stringify({ username: username, password_hash: password })
+            body: JSON.stringify({ username: username, password: password })
         })
         .then(response => response.json())
         .then(data => {
-            if (!data.msg) {
+            if (!data.msg && data !== "Internal Server Error") {
                 setUser(data);
                 alert("Login exitoso!");
                 navigate("/");
             } else {
-                alert("Error en el login!");
+                alert(data.msg || data);
             }
         })
     

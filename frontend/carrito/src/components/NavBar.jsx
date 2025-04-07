@@ -13,10 +13,10 @@ export default function NavBar() {
     return (
         <Navbar bg="dark" variant="dark" expand="lg">
         <Container>
-            <Navbar.Brand href="/">
-                <MdShoppingCart size={30} />{" "}
+            <div onClick={() => navigate("/")} style={{color: "white", cursor: "pointer", display: "flex", alignItems: "center", fontWeight: "bold", marginRight: "10px"}}>
+                <MdShoppingCart size={30} color='white'/>{" "}
                 MeLi Challenge
-            </Navbar.Brand>
+            </div>
             <Navbar.Toggle aria-controls="navbar-nav" />
             <Navbar.Collapse id="navbar-nav">
                 <Nav className="me-auto">

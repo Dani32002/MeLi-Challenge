@@ -74,7 +74,7 @@ export default function Product({ product, allowCart }) {
     }
 
     return (
-        <Card style={{ width: '18rem', height: '22rem' }}>
+        <Card style={{ width: '18rem', height: allowCart? '22rem': '15rem' }}>
             <Card.Img variant="top" src={product.imagen_path} alt={product.nombre} style={{width: "100%", height: "50%", objectFit: "contain", padding: "5%"}}/>
             <Card.Body>
                 <Card.Title style={{ width: '100%', textAlign: 'center' }}>
